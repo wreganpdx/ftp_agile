@@ -35,15 +35,18 @@ namespace FTPServer
             client.Credentials = new System.Net.NetworkCredential(username, password); //Create credentials
             client.Connect(); //Connect to client
 
-            if(client.IsConnected) //If connect success
+            if (client.IsConnected)
             {
                 Program.OptionPrompt(); //give option prompt
+                Console.WriteLine("FTP is connected");
+                Console.ReadLine();
             }
             else
             {
+                Console.WriteLine("FTP is not connected");
+                Console.ReadLine();
                 Console.Write("Connection failed. The server may not be running or connection fields like IP or credentials may be invalid.");//display error
             }
-
 
         }
 
