@@ -63,7 +63,39 @@ namespace FTPServer
         }
         public static void OptionPrompt()
         {
-            Console.Write("This is a place holder! Connection success!");
+            string newAction;
+            Console.Write("Please enter a command\n");
+            Console.Write("1. Get file from remote server\n");
+            Console.Write("2. Log off from remote server\n");
+            Console.Write("3. Get multiple files\n");
+            Console.Write("4. List directories and files on local machine\n");
+            Console.Write("5. Delete directory on remote server\n");
+            Console.Write("6. Create directory on remote server\n");
+            Console.Write("7. Put file on remote server\n");
+
+
+
+            newAction = Console.ReadLine(); //read in ip
+            int action = Convert.ToInt32(newAction);
+            switch (action)
+            {
+                case 1:
+                    break;
+                case 2:
+                    Commands.LogOff.logOff();
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+            }
+
         }
         static void Main(string[] args)
         {
