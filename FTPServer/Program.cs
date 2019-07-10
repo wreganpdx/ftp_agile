@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,46 +8,59 @@ using FluentFTP;
 
 namespace FTPServer
 {
+
+  
     class Program
     {
+        static string ip; // ip will be a string type
+        static string username;
+        static string password;
+        static FtpClient client;
         public static void LogIn()
         {
-            string ip; // ip will be a string type
-            string username;
-            string password;
-            FtpClient client;
+            char continuePrompt = 'Y'; //This flag is used to exit the while loop below by being set to anything other than Y.
 
-            
-            Console.WriteLine("DEBUG MSG: Localhost IP is 127.0.0.1");
-            Console.Write("Enter the I.P to connect to and press enter: ");
-            ip = Console.ReadLine(); //read in ip
-
-            Console.WriteLine(""); //spacing for console
-            Console.WriteLine("Leaving username and password field empty attempts to connect with anonymous account.");
-            Console.WriteLine(""); //spacing for console
-
-            Console.Write("Enter the username field to connect with and press enter: ");
-            username = Console.ReadLine(); //read in username
-            Console.Write("Enter the password field to connect with and press enter: ");
-            password = Console.ReadLine(); //read in password
-
-            client = new FtpClient(ip); // create an FTP client using ip
-            client.Credentials = new System.Net.NetworkCredential(username, password); //Create credentials
-            client.Connect(); //Connect to client
-
-            if(client.IsConnected) //If connect success
+            while (continuePrompt == 'Y')
             {
-                Program.OptionPrompt(); //give option prompt
-            }
-            else
-            {
-                Console.Write("Connection failed. The server may not be running or connection fields like IP or credentials may be invalid.");//display error
-            }
+                try
+                {
+                    Console.WriteLine("DEBUG MSG: Localhost IP is 127.0.0.1");
+                    Console.Write("Enter the I.P to connect to and press enter: ");
+                    Program.ip = Console.ReadLine(); //read in ip
+
+                    Console.WriteLine(Environment.NewLine + "Leaving username and password field empty attempts to connect with anonymous account." + Environment.NewLine);
+
+                    Console.Write("Enter the username field to connect with and press enter: ");
+                    Program.username = Console.ReadLine(); //read in username
+                    Console.Write("Enter the password field to connect with and press enter: ");
+                    Program.password = Console.ReadLine(); //read in password
+
+                    client = new FtpClient(Program.ip); // create an FTP client using ip
+                    client.Credentials = new System.Net.NetworkCredential(Program.username, Program.password); //Create credentials
+                    client.Connect(); //Connect to client
+
+                    if (client.IsConnected) //If connect success
+                    {
+                        continuePrompt = 'N'; //Setting continuePrompt flag to N ensures we escape for loop.
+                        Program.OptionPrompt(); //give option prompt
+                        Console.WriteLine("FTP is connected");
+                        Console.ReadLine();
+                    }
+                }
+                catch (Exception connectionException)
+                {
+                    //print exception to console since we don't have a log file
+                    Console.WriteLine(Environment.NewLine + connectionException.Message + Environment.NewLine);
+                }
+                finally //finally, we ask user if they'd like to try another log in attempt.
+                {
+                    Console.WriteLine("A connection exception has occurred. Would you like to try again? Type in Y to continue or N to exit.");
+                    continuePrompt = Char.ToUpper(Console.ReadKey().KeyChar);
+                }
 
 
+            }
         }
-
-
         public static void OptionPrompt()
         {
             string newAction;
