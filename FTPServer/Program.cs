@@ -43,8 +43,6 @@ namespace FTPServer
                     {
                         continuePrompt = 'N'; //Setting continuePrompt flag to N ensures we escape for loop.
                         Program.OptionPrompt(); //give option prompt
-                        Console.WriteLine("FTP is connected");
-                        Console.ReadLine();
                     }
                 }
                 catch (Exception connectionException)
@@ -54,7 +52,10 @@ namespace FTPServer
                 }
                 finally //finally, we ask user if they'd like to try another log in attempt.
                 {
-                    Console.WriteLine("A connection exception has occurred. Would you like to try again? Type in Y to continue or N to exit.");
+                    if (continuePrompt == 'Y')
+                    {
+                        Console.WriteLine("A connection exception has occurred. Would you like to try again? Type in Y to continue or N to exit.");
+                    }
                     continuePrompt = Char.ToUpper(Console.ReadKey().KeyChar);
                 }
 
@@ -82,7 +83,11 @@ namespace FTPServer
                 case 1:
                     break;
                 case 2:
-                    Commands.LogOff.logOff();
+                    client.Disconnect();
+                    if (!client.IsConnected)
+                    {
+                        Console.Write("Client got disconnected from the FTP server");
+                    }
                     break;
                 case 3:
                     break;
