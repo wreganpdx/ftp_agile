@@ -80,7 +80,7 @@ namespace FTPServer
             switch (action)
             {
                 case 1:
-                    Commands.GetFile.getFile();
+                    Commands.GetFile.getFile(client);
                     break;
                 case 2:
                     Commands.LogOff.logOff();
