@@ -12,7 +12,7 @@ namespace FTPServer.Commands
     {
         static FtpClient client;
 
-        public GetFile()
+        public getFile()
         {
             Console.WriteLine("Request to obtain a file using the command 'get <file_name>'");
 
@@ -23,12 +23,14 @@ namespace FTPServer.Commands
             if (command.Length != 2)
             {
                 Console.WriteLine("Invalid Command");
+                Program.OptionPrompt;
             }
             else
             {
                 if(command[0] != "get")
                 {
                     Console.WriteLine("Invalid Command. Must be in the form 'get <file_name>");
+                    Program.OptionPrompt;
                 }
                 else
                 {
