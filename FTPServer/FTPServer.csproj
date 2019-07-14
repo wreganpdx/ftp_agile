@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\LogOff.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Connection.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Hash.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_HighLevel.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpReply.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpTrace.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Helpers\IntRef.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\LogOff.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Proxy\FtpClientBlueCoatProxy.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Proxy\FtpClientHttp11Proxy.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Proxy\FtpClientProxy.cs" />
