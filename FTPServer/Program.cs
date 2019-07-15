@@ -72,6 +72,7 @@ namespace FTPServer
             Console.Write("5. Delete directory on remote server\n");
             Console.Write("6. Create directory on remote server\n");
             Console.Write("7. Put file on remote server\n");
+            Console.Write("8. Rename file on remote server\n");
 
 
 
@@ -94,6 +95,9 @@ namespace FTPServer
                 case 6:
                     break;
                 case 7:
+                    break;
+                case 8:
+                    Commands.Rename.rename(client);
                     break;
             }
 

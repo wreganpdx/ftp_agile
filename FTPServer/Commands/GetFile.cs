@@ -17,7 +17,7 @@ namespace FTPServer.Commands
         public static void getFile(FtpClient client)
         {
             //User must be VERY specific with path to file. 
-            Console.WriteLine("Request to obtain a file using this example 'get C:/absolute/path/to/<file_name> C:/absolutepath/to/put/<file_name>'");
+            Console.WriteLine("Request to obtain a file using this example 'get absolute/path/to/<file_name> absolutepath/to/put/<file_name>'");
             Console.WriteLine("Be aware of where the ftp client was set up. If it is set to search a certain directory, it can only look for files within specified directory");
             //for example, I had the path C:/users/amanda/AgileFiles set as my ftp server's path. I could only search for files/folders from AgileFiles. 
 
