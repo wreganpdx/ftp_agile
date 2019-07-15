@@ -16,8 +16,11 @@ namespace FTPServer.Commands
         
         public static void getFile(FtpClient client)
         {
-            
-            Console.WriteLine("Request to obtain a file using the command 'get path/to/<file_name> path/to/put/<file_name>'");
+            //User must be VERY specific with path to file. 
+            Console.WriteLine("Request to obtain a file using this example 'get C:/absolute/path/to/<file_name> C:/absolutepath/to/put/<file_name>'");
+            Console.WriteLine("Be aware of where the ftp client was set up. If it is set to search a certain directory, it can only look for files within specified directory");
+            //for example, I had the path C:/users/amanda/AgileFiles set as my ftp server's path. I could only search for files/folders from AgileFiles. 
+
 
             String fileToGet = Console.ReadLine(); // read in the command
             String [] command = fileToGet.Split(' '); //split so i can ensure the command is in the correct form
@@ -35,7 +38,8 @@ namespace FTPServer.Commands
                 bool result = command[0].Equals("get");
                 if(!command[0].Equals("get"))
                 {
-                    Console.WriteLine("Invalid Command. Must be in the form 'get <file_name>");
+                    
+                    Console.WriteLine("Invalid Command. Must be in the form 'get absolute/path/to/<file_name> absolute/path/to/put/<file_name>'");
                     Program.OptionPrompt();
                 }
                 else
@@ -46,14 +50,9 @@ namespace FTPServer.Commands
 
                     //download the file from the server to the local directory. FtpLocalExists.Append resumes a partial upload.
                     try{
-                        //currently hard written file names for testing
-                        //put file on the server
-                        client.UploadFile(@"C:\User\amand\AgileFiles\fileofnothing.txt", "./AgileFilesInner/fileofnothing.txt");
+                        
 
-                        //rename it so i can redownload it
-                        //client.Rename("./AgileFilesInner/fileofnothing.txt", "./AgileFilesInner/fileofnothing2.txt");
-                        //downloads the file... but this but isnt working. AgileFiles2 is empty.
-                        bool response = client.DownloadFile(@"C:\User\amand\AgileFiles\fileofnothing.txt", "./AgileFilesInner/fileofnothing.txt",FtpLocalExists.Overwrite);
+                        bool response = client.DownloadFile(command[1], command[2]);
                         
                         //if the download was successful
                         if(response == true){
@@ -67,7 +66,7 @@ namespace FTPServer.Commands
                     catch(Exception downloadException){
                         Console.WriteLine(Environment.NewLine + downloadException.Message + Environment.NewLine);
                     }
-                    //logic
+                   
                 }
             
             }
