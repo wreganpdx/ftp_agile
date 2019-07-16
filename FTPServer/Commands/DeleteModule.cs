@@ -9,7 +9,7 @@ using FluentFTP;
 
 namespace FTPServer.Commands
 {
-    public class DeleteModule
+    class DeleteModule
     {
         public static void deleteDir(FtpClient client)
         {

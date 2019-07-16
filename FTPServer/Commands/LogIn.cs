@@ -18,6 +18,7 @@ namespace FTPServer.Commands
             string username = "";
             string password = "";
 
+            Console.WriteLine("Al");
             while (continuePrompt == 'Y')
             {
                 try

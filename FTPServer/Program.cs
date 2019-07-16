@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentFTP;
 
+using FTPServer.Commands;
 
 
 namespace FTPServer
