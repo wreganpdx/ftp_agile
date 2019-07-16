@@ -13,11 +13,7 @@ namespace FTPServer
   
     class Program
     {
-        static string ip; // ip will be a string type
-        static string username;
-        static string password;
         static FtpClient client;
-       
 
         public static void OptionPrompt()
         {
@@ -46,7 +42,7 @@ namespace FTPServer
                 case 4:
                     break;
                 case 5:
-                    
+                    FTPServer.Commands.DeleteModule.DeleteDir(client);
                     break;
                 case 6:
                     break;
