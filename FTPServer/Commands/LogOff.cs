@@ -8,7 +8,7 @@ using FluentFTP;
 
 namespace FTPServer.Commands
 {
-    class LogOff
+     class LogOff
     {
         static public void logOff()
         {
@@ -24,6 +24,7 @@ namespace FTPServer.Commands
             }
         }
     }
+
 }
 
 

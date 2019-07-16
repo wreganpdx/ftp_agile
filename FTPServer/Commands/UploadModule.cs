@@ -9,9 +9,6 @@ using FluentFTP;
 
 namespace FTPServer.Commands
 {
-    
-
-    
     class UploadModule
     {
         //This function is used to validate local file Paths and remote directories. It returns null if the local file path or remote directory is not found. Otherwise, it returns the absolute path of the resource.
@@ -50,13 +47,13 @@ namespace FTPServer.Commands
         }
 
         //uploadFile is used to upload files from local to remote.
-        public void uploadFile(FtpClient client)
+        public static void uploadFile(FtpClient client)
         {
             string filePathLocal = null; //file location on local machine
             string directoryPathRemote = null; //location to write the local file to
 
-            filePathLocal = getAndCheckLocalRemotePath(true,client);
-            directoryPathRemote = getAndCheckLocalRemotePath(false,client);
+            filePathLocal = getAndCheckLocalRemotePath(true, client);
+            directoryPathRemote = getAndCheckLocalRemotePath(false, client);
 
             if (filePathLocal != null && directoryPathRemote != null)
             {
@@ -72,14 +69,12 @@ namespace FTPServer.Commands
 
         public void makeDir(FtpClient client)
         {
-            string parentDirectoryRemote = getAndCheckLocalRemotePath(false,client);
+            string parentDirectoryRemote = getAndCheckLocalRemotePath(false, client);
 
             if (parentDirectoryRemote != null)
             {
                 client.CreateDirectory(parentDirectoryRemote);
             }
-
-
         }
     }
 }

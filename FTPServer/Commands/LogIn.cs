@@ -9,14 +9,15 @@ using FluentFTP;
 
 namespace FTPServer.Commands
 {
-    
+
     class LogIn
     {
-        public static void LogIn(FtpClient client)
+        public static void logIn(FtpClient client)
         {
             char continuePrompt = 'Y'; //This flag is used to exit the while loop below by being set to anything other than Y.
             string username = "";
             string password = "";
+            string ip = "";
 
             Console.WriteLine("Al");
             while (continuePrompt == 'Y')
@@ -25,7 +26,7 @@ namespace FTPServer.Commands
                 {
                     Console.WriteLine("DEBUG MSG: Localhost IP is 127.0.0.1");
                     Console.Write("Enter the I.P to connect to and press enter: ");
-                    Program.ip = Console.ReadLine(); //read in ip
+                    ip = Console.ReadLine(); //read in ip
 
                     Console.WriteLine(Environment.NewLine + "Leaving username and password field empty attempts to connect with anonymous account." + Environment.NewLine);
 
@@ -34,8 +35,8 @@ namespace FTPServer.Commands
                     Console.Write("Enter the password field to connect with and press enter: ");
                     password = Console.ReadLine(); //read in password
 
-                    client = new FtpClient(Program.ip); // create an FTP client using ip
-                    client.Credentials = new System.Net.NetworkCredential(Program.username, Program.password); //Create credentials
+                    client = new FtpClient(ip); // create an FTP client using ip
+                    client.Credentials = new System.Net.NetworkCredential(username, password); //Create credentials
                     client.Connect(); //Connect to client
 
                     if (client.IsConnected) //If connect success
