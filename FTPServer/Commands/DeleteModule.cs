@@ -23,6 +23,7 @@ namespace FTPServer.Commands
 
                 if (client.DirectoryExists(directoryLocation))
                 {
+                    Console.WriteLine(Environment.NewLine + "Directory deleted." + Environment.NewLine);
                     client.DeleteDirectory(directoryLocation);
                     promptContinue = 'F';
                 }
