@@ -53,9 +53,11 @@ namespace FTPServer.Commands
             string directoryPathRemote = null; //location to write the local file to
 
             filePathLocal = getAndCheckLocalRemotePath(true, client);
-            directoryPathRemote = getAndCheckLocalRemotePath(false, client);
 
-            if (filePathLocal != null && directoryPathRemote != null)
+            if(filePathLocal != null)
+                directoryPathRemote = getAndCheckLocalRemotePath(false, client);
+
+            if (directoryPathRemote != null)
             {
                 try
                 {
