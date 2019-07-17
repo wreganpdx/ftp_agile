@@ -85,15 +85,31 @@ namespace FTPServer.Commands
         public static void makeDir(FtpClient client)
         {
 
-            string parentDirectoryRemote = null;
+            string newDirectoryRemote = null;
 
-            Console.WriteLine("Enter directory to add and press enter: ");
+            Console.WriteLine("Type a name for the new directory and press enter: ");
             
-            parentDirectoryRemote = Console.ReadLine();
+            newDirectoryRemote = Console.ReadLine();
 
-            if (parentDirectoryRemote != null)
+            if (newDirectoryRemote == "")
             {
-                client.CreateDirectory(parentDirectoryRemote);
+                Console.WriteLine("Enter a name, please! Isn't that what you are here for?");
+            }
+            else if (newDirectoryRemote.IndexOfAny("<>:\"/\\|?*".ToCharArray()) != -1)
+            {
+                Console.WriteLine("No forbidden character!");
+                Console.WriteLine("________________________");
+            }
+            else if (newDirectoryRemote.EndsWith("."))
+            {
+                Console.WriteLine("The last character in the name can't be \".\"!");
+                Console.WriteLine("______________________________________________");
+            }
+            else
+            {
+                Console.WriteLine("Creating directory with the name " + newDirectoryRemote);
+                Console.WriteLine("___________________________________________");
+                client.CreateDirectory(newDirectoryRemote);
             }
         }
     }
