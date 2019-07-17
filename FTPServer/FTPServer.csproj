@@ -46,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\LogOff.cs" />
+    <Compile Include="Commands\LogIn.cs" />
+    <Compile Include="Commands\UploadModule.cs" />
+    <Compile Include="Commands\DeleteModule.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Connection.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Hash.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_HighLevel.cs" />

@@ -57,7 +57,15 @@ namespace FTPServer.Commands
 
             if (filePathLocal != null && directoryPathRemote != null)
             {
-                client.UploadFile(filePathLocal, directoryPathRemote);
+                try
+                {
+                    client.UploadFile(filePathLocal, directoryPathRemote);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(Environment.NewLine + e.Message + Environment.NewLine);
+                    Console.ReadKey();
+                }
             }
             else
             {
@@ -67,9 +75,13 @@ namespace FTPServer.Commands
         }
 
 
-        public void makeDir(FtpClient client)
+        public static void makeDir(FtpClient client)
         {
-            string parentDirectoryRemote = getAndCheckLocalRemotePath(false, client);
+
+            string parentDirectoryRemote = null;
+
+            Console.WriteLine("Enter directory to add and press enter: ");
+            parentDirectoryRemote = Console.ReadLine();
 
             if (parentDirectoryRemote != null)
             {
