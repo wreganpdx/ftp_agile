@@ -25,7 +25,8 @@ namespace FTPServer.Commands
             {
                 try
                 {
-                    Console.Write("Enter the I.P to connect to and press enter: ");
+                    Console.Write( Environment.NewLine + "Enter the I.P to connect to and press enter: ");
+
                     ip = Console.ReadLine(); //read in ip
 
                     Console.WriteLine(Environment.NewLine + "Leaving username and password field empty attempts to connect with anonymous account." + Environment.NewLine);
@@ -54,7 +55,6 @@ namespace FTPServer.Commands
                     Console.WriteLine(Environment.NewLine + connectionException.Message + Environment.NewLine);
                     Console.WriteLine("A connection exception has occurred. Would you like to try again? Type in Y to continue or N to exit.");
                     continuePrompt = Char.ToUpper(Console.ReadKey().KeyChar);
-
                 }
              }
 

@@ -21,6 +21,7 @@ namespace FTPServer
 
             while(newAction != "0")
             {
+                Console.WriteLine("");
                 Console.Write("Please enter a command\n");
                 Console.Write("0. Exit application.\n");
                 Console.Write("1. Get file from remote server\n");
@@ -65,9 +66,11 @@ namespace FTPServer
         static void Main(string[] args)
         {
            //192.168.1.11
+           Console.WriteLine("FTP CLIENT" + Environment.NewLine);
+
            client = Commands.LogIn.logIn();
            
-          if(client != null)
+          if(client != null && client.IsConnected)
              Program.OptionPrompt();
         }
     }
