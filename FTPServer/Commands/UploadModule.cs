@@ -112,6 +112,31 @@ namespace FTPServer.Commands
                 Console.WriteLine("______________________________________________");
                 Console.WriteLine("Type t to try again or any other character to quit and press enter: ");
                 cont = Console.ReadKey().KeyChar;
+
+            Console.WriteLine("Type a name for the new directory and press enter: ");
+            
+            newDirectoryRemote = Console.ReadLine();
+
+            if (newDirectoryRemote == "")
+            {
+                Console.WriteLine("Enter a name, please! Isn't that what you are here for?");
+            }
+            else if (newDirectoryRemote.IndexOfAny("<>:\"/\\|?*".ToCharArray()) != -1)
+            {
+                Console.WriteLine("No forbidden character!");
+                Console.WriteLine("________________________");
+            }
+            else if (newDirectoryRemote.EndsWith("."))
+            {
+                Console.WriteLine("The last character in the name can't be \".\"!");
+                Console.WriteLine("______________________________________________");
+            }
+            else
+            {
+                Console.WriteLine("Creating directory with the name " + newDirectoryRemote);
+                Console.WriteLine("___________________________________________");
+                client.CreateDirectory(newDirectoryRemote);
+>>>>>>> 83ff16192616199fa3f89938115de4b091d8fff6
             }
             else
             {
