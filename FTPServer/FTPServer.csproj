@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\GetMultiple.cs" />
     <Compile Include="Commands\Rename.cs" />
     <Compile Include="Commands\GetFile.cs" />
     <Compile Include="Commands\LogOff.cs" />
