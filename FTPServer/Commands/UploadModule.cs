@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -85,16 +85,43 @@ namespace FTPServer.Commands
         public static void makeDir(FtpClient client)
         {
 
-            string parentDirectoryRemote = null;
+            string newDirectoryRemote = null;
+            char cont = 'c';
 
-            Console.WriteLine("Enter directory to add and press enter: ");
-            
-            parentDirectoryRemote = Console.ReadLine();
+            while(cont == 't')
+            {            
+                Console.WriteLine("Enter directory to add and press enter: ");
+                newDirectoryRemote = Console.ReadLine();
 
-            if (parentDirectoryRemote != null)
+             if (newDirectoryRemote == "")
             {
-                client.CreateDirectory(parentDirectoryRemote);
+                Console.WriteLine("Enter a name, please! Isn't that what you are here for?");
+                Console.WriteLine("Type t to try again or any other character to quit and press enter: ");
+                cont = Console.ReadKey().KeyChar;
             }
+            else if (newDirectoryRemote.IndexOfAny("<>:\"/\\|?*".ToCharArray()) != -1)
+            {
+                Console.WriteLine("No forbidden character!");
+                Console.WriteLine("________________________");
+                Console.WriteLine("Type t to try again or any other character to quit and press enter: ");
+                cont = Console.ReadKey().KeyChar;
+            }
+            else if (newDirectoryRemote.EndsWith("."))
+            {
+                Console.WriteLine("The last character in the name can't be \".\"!");
+                Console.WriteLine("______________________________________________");
+                Console.WriteLine("Type t to try again or any other character to quit and press enter: ");
+                cont = Console.ReadKey().KeyChar;
+            }
+            else
+            {
+                Console.WriteLine("Creating directory with the name " + newDirectoryRemote);
+                Console.WriteLine("___________________________________________");
+                client.CreateDirectory(newDirectoryRemote);
+                cont = 'q';
+            }
+            
         }
+      }
     }
 }
