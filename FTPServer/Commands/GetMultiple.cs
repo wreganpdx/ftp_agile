@@ -38,9 +38,18 @@ namespace FTPServer.Commands
                 else
                 {
                     //verify the / is at the end or weird things happen...
+                    int comLenghth1 = command[1].Length;
+                    int comLength2 = command[2].Length;
+                    if(command[1][comLenghth1-1] != '/')
+                    {
+                        command[1] +='/';
+                    }
+                    if(command[2][comLength2-1] != '/')
+                    {
+                        command[2] +='/';
+                    }
 
-                        
-                        Console.WriteLine("File names to obtain ex: <file_name1> <file_name2> ... ...");
+                         Console.WriteLine("File names to obtain ex: <file_name1> <file_name2> ... ...");
                         String allfiles = Console.ReadLine();
 
                         String[] files = allfiles.Split(' ');//split to obtain each file
