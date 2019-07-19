@@ -16,6 +16,7 @@ namespace FTPServer
         static string username;
         static string password;
         static FtpClient client;
+        
         public static void LogIn()
         {
             char continuePrompt = 'Y'; //This flag is used to exit the while loop below by being set to anything other than Y.
@@ -38,7 +39,6 @@ namespace FTPServer
                     client = new FtpClient(Program.ip); // create an FTP client using ip
                     client.Credentials = new System.Net.NetworkCredential(Program.username, Program.password); //Create credentials
                     client.Connect(); //Connect to client
-
                     if (client.IsConnected) //If connect success
                     {
                         continuePrompt = 'N'; //Setting continuePrompt flag to N ensures we escape for loop.

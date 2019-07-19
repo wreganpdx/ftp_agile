@@ -53,7 +53,7 @@ namespace FTPServer.Commands
 
                         try
                         { 
-                            numDownloaded = client.DownloadFiles(command[1], files,FtpLocalExists.Skip,FtpVerify.Delete);
+                            numDownloaded = client.DownloadFiles(command[1], files,FtpLocalExists.Skip,FtpVerify.Delete,FtpError.DeleteProcessed);
                         }
                         catch (Exception getmpFileException)
                         {
