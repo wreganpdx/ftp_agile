@@ -400,7 +400,7 @@ namespace FluentFTP {
 			List<string> successfulDownloads = new List<string>();
 
 			// ensure ends with slash
-			localDir = !localDir.EndsWith(Path.DirectorySeparatorChar.ToString()) ? localDir + Path.DirectorySeparatorChar.ToString() : localDir;
+			localDir = !localDir.EndsWith(Path.AltDirectorySeparatorChar.ToString()) ? localDir + Path.AltDirectorySeparatorChar.ToString() : localDir;
 
 			foreach (string remotePath in remotePaths) {
 
@@ -1376,6 +1376,7 @@ namespace FluentFTP {
 			} while (!verified && attemptsLeft > 0);
 
 			if (downloadSuccess && !verified && verifyOptions.HasFlag(FtpVerify.Delete)) {
+				Console.WriteLine("Deleting Bad File");
 				File.Delete(localPath);
 			}
 
@@ -1937,7 +1938,7 @@ namespace FluentFTP {
 		#region Verification
 
 		private bool VerifyTransfer(string localPath, string remotePath) {
-
+			Console.WriteLine("Verifying "+localPath+ "   "+remotePath);
 			// verify args
 			if (localPath.IsBlank()) {
 				throw new ArgumentException("Required parameter is null or blank.", "localPath");
@@ -1950,6 +1951,7 @@ namespace FluentFTP {
 				this.HasFeature(FtpCapability.XMD5) || this.HasFeature(FtpCapability.XCRC) ||
 				this.HasFeature(FtpCapability.XSHA1) || this.HasFeature(FtpCapability.XSHA256) ||
 				this.HasFeature(FtpCapability.XSHA512)) {
+				Console.WriteLine("can we checksum?");
 				FtpHash hash = this.GetChecksum(remotePath);
 				if (!hash.IsValid)
 					return false;

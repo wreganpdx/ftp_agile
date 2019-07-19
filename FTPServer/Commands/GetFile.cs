@@ -39,7 +39,7 @@ namespace FTPServer.Commands
                 if(!command[0].Equals("get"))
                 {
                     
-                    Console.WriteLine("Invalid Command. Must be in the form 'get absolute/path/to/<file_name> absolute/path/to/put/<file_name>'");
+                    Console.WriteLine("Invalid Command. Must be in the form 'get absolute/path/to/put/<file_name> absolute/path/to/<file_name>'");
                     Program.OptionPrompt();
                 }
                 else
