@@ -58,6 +58,7 @@ namespace FTPServer.Commands
                  {
                     Console.WriteLine("Remote directory not found. Press t to try again or any other character to quit: ");
                     cont = Console.ReadLine();
+                    Console.WriteLine();
                  }
                }
 
@@ -95,32 +96,17 @@ namespace FTPServer.Commands
                 newDirectoryRemote = Console.ReadLine();
                 Console.WriteLine("");
 
-             if (newDirectoryRemote == "")
-            {
-                Console.WriteLine("Enter a name, please! Isn't that what you are here for?");
-                Console.WriteLine("Type t to try again or any other character to quit and press enter: ");
-                cont = Console.ReadKey().KeyChar;
-            }
-            else if (newDirectoryRemote.IndexOfAny("<>:\"/\\|?*".ToCharArray()) != -1)
-            {
-                Console.WriteLine("No forbidden character!");
-                Console.WriteLine("________________________");
-                Console.WriteLine("Type t to try again or any other character to quit and press enter: ");
-                cont = Console.ReadKey().KeyChar;
-            }
-            else if (newDirectoryRemote.EndsWith("."))
-            {
-                Console.WriteLine("The last character in the name can't be \".\"!");
-                Console.WriteLine("______________________________________________");
-                Console.WriteLine("Type t to try again or any other character to quit and press enter: ");
-                cont = Console.ReadKey().KeyChar;
-            }
-            else
+            if(FTPServer.Commands.ResourcePathCheck.checkPathCharacters(newDirectoryRemote))
             {
                 Console.WriteLine("Creating directory with the name " + newDirectoryRemote);
                 Console.WriteLine("___________________________________________");
                 client.CreateDirectory(newDirectoryRemote);
                 cont = 'q';
+            }
+            else
+            {
+               Console.WriteLine("Press t to try again or any other char to quit: ");
+               cont = Console.ReadKey().KeyChar;
             }
             
         }
