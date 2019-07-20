@@ -40,11 +40,14 @@ namespace FTPServer
                     client.Connect(); //Connect to client
 
                     if (client.IsConnected) //If connect success
-                    {
+                    { 
                         continuePrompt = 'N'; //Setting continuePrompt flag to N ensures we escape for loop.
-                        Program.OptionPrompt(); //give option prompt
                         Console.WriteLine("FTP is connected");
-                        Console.ReadLine();
+                        while (client.IsConnected)
+                        {
+                            Program.OptionPrompt(); //give option prompt          
+                            Console.ReadLine();
+                        }
                     }
                 }
                 catch (Exception connectionException)
@@ -72,6 +75,7 @@ namespace FTPServer
             Console.Write("5. Delete directory on remote server\n");
             Console.Write("6. Create directory on remote server\n");
             Console.Write("7. Put file on remote server\n");
+            Console.Write("8. Put multiple files on remote server\n");
 
 
 
@@ -82,7 +86,7 @@ namespace FTPServer
                 case 1:
                     break;
                 case 2:
-                    Commands.LogOff.logOff();
+                    Commands.LogOff.logOff(client);
                     break;
                 case 3:
                     break;
@@ -93,6 +97,9 @@ namespace FTPServer
                 case 6:
                     break;
                 case 7:
+                    break;
+                case 8:
+                    Commands.PutMultiple.putMultiple();
                     break;
             }
 
