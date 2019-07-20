@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,9 @@ namespace FTPServer
         static string username;
         static string password;
         static FtpClient client;
+        static char save_credientals;
+       
+
         public static void LogIn()
         {
             char continuePrompt = 'Y'; //This flag is used to exit the while loop below by being set to anything other than Y.
@@ -28,12 +32,20 @@ namespace FTPServer
                     Console.Write("Enter the I.P to connect to and press enter: ");
                     Program.ip = Console.ReadLine(); //read in ip
 
-                    Console.WriteLine(Environment.NewLine + "Leaving username and password field empty attempts to connect with anonymous account." + Environment.NewLine);
+                    //Console.WriteLine(Environment.NewLine + "Leaving username and password field empty attempts to connect with anonymous account." + Environment.NewLine);
 
                     Console.Write("Enter the username field to connect with and press enter: ");
                     Program.username = Console.ReadLine(); //read in username
                     Console.Write("Enter the password field to connect with and press enter: ");
                     Program.password = Console.ReadLine(); //read in password
+                    Console.Write("Would you like to save this connection info? (Y/N): ");
+                    Program.save_credientals = char.ToUpper(Console.ReadKey().KeyChar);
+                    Console.Write("\n====================\n");
+                    if (save_credientals == 'Y')
+                    {
+                        Commands.SaveLoginInfo.saveLoginInfo(ip, username, password);
+                    }
+                 
 
                     client = new FtpClient(Program.ip); // create an FTP client using ip
                     client.Credentials = new System.Net.NetworkCredential(Program.username, Program.password); //Create credentials
@@ -64,6 +76,12 @@ namespace FTPServer
 
             }
         }
+
+        private static char ToUpper(char v)
+        {
+            throw new NotImplementedException();
+        }
+
         public static void OptionPrompt()
         {
             string newAction;
