@@ -18,6 +18,8 @@ namespace FTPServer
         static string password;
         static FtpClient client;
         static char save_credientals;
+        static char use_credientials;
+        static Boolean use_saved_credentials = false;
        
 
         public static void LogIn()
@@ -29,27 +31,39 @@ namespace FTPServer
                 try
                 {
                     Console.WriteLine("DEBUG MSG: Localhost IP is 127.0.0.1");
-                    Console.Write("Enter the I.P to connect to and press enter: ");
-                    Program.ip = Console.ReadLine(); //read in ip
-
-                    //Console.WriteLine(Environment.NewLine + "Leaving username and password field empty attempts to connect with anonymous account." + Environment.NewLine);
-
-                    Console.Write("Enter the username field to connect with and press enter: ");
-                    Program.username = Console.ReadLine(); //read in username
-                    Console.Write("Enter the password field to connect with and press enter: ");
-                    Program.password = Console.ReadLine(); //read in password
-                    Console.Write("Would you like to save this connection info? (Y/N): ");
-                    Program.save_credientals = char.ToUpper(Console.ReadKey().KeyChar);
-                    Console.Write("\n====================\n");
-                    if (save_credientals == 'Y')
+                    Console.WriteLine(Environment.NewLine + "Leaving username and password field empty attempts to connect with anonymous account." + Environment.NewLine);
+                    Console.Write("Would you like to use your last saved login info? (Y/N)?");        
+                    Program.use_credientials = char.ToUpper(Console.ReadKey().KeyChar);
+                    Console.Write("\n");
+                    if (use_credientials == 'Y')
                     {
-                        Commands.SaveLoginInfo.saveLoginInfo(ip, username, password);
+                        use_saved_credentials = true;
+                        Commands.UseLogin.useLogin(ref client);   
                     }
-                 
-
-                    client = new FtpClient(Program.ip); // create an FTP client using ip
-                    client.Credentials = new System.Net.NetworkCredential(Program.username, Program.password); //Create credentials
-                    client.Connect(); //Connect to client
+                    else
+                    {
+                        use_saved_credentials = false;
+                    }
+                    
+                    if (use_saved_credentials == false)
+                    {
+                        Console.Write("Enter the I.P to connect to and press enter: ");
+                        Program.ip = Console.ReadLine(); //read in ip
+                        Console.Write("Enter the username field to connect with and press enter: ");
+                        Program.username = Console.ReadLine(); //read in username
+                        Console.Write("Enter the password field to connect with and press enter: ");
+                        Program.password = Console.ReadLine(); //read in password
+                        Console.Write("Would you like to save this connection info? (Y/N): ");
+                        Program.save_credientals = char.ToUpper(Console.ReadKey().KeyChar);
+                        Console.Write("\n");
+                        if (save_credientals == 'Y')
+                        {
+                            Commands.SaveLoginInfo.saveLoginInfo(ip, username, password);
+                        }
+                        client = new FtpClient(Program.ip); // create an FTP client using ip
+                        client.Credentials = new System.Net.NetworkCredential(Program.username, Program.password); //Create credentials
+                        client.Connect(); //Connect to client
+                    }
 
                     if (client.IsConnected) //If connect success
                     { 
