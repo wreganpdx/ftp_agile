@@ -16,17 +16,21 @@ namespace FTPServer.Commands
             string filePathLocal = null;
             string retVal = null;
             string cont ="t";
-
+            
+            
+            
               while(cont == "t")
             {
                 Console.Write("Enter the path of the local file and press enter: ");
 
                 filePathLocal = Console.ReadLine();
+                
 
                 if(File.Exists(filePathLocal))
                  {
                     cont = "q";
                     retVal = filePathLocal;
+                    Console.WriteLine("File found!");
                  }
                 else
                  {
@@ -49,7 +53,7 @@ namespace FTPServer.Commands
 
                 DirPathRemote = Console.ReadLine();
 
-                if(client.DirectoryExists(DirPathRemote))
+                if(ResourcePathCheck.checkDirectoryPath(DirPathRemote) && client.DirectoryExists(DirPathRemote))
                  {
                     cont = "q";
                     retVal = DirPathRemote;
@@ -70,16 +74,57 @@ namespace FTPServer.Commands
         {
             string directoryPathRemote = null;
             string filePathLocal = null;
+            string filename = "saved";
     
             filePathLocal = UploadModule.checkLocalFile(); //file location on local machine
             
             if(filePathLocal != null)
+             {
                 directoryPathRemote = UploadModule.checkRemoteDirectory(client); //location to write the local file to
-            
-            if(filePathLocal != null && directoryPathRemote != null)
-                client.UploadFile(filePathLocal,directoryPathRemote);
+             }
+
+            if(directoryPathRemote != null)
+               filename = UploadModule.getNewFileName();
+
+            if(filePathLocal != null && filename != null && directoryPathRemote != null)
+              {
+                client.UploadFile(filePathLocal,directoryPathRemote + filename);
+                Console.WriteLine("File uploaded!");
+                Console.WriteLine("");
+              }
             else
                 Console.WriteLine(Environment.NewLine + "Upload operation not completed!" + Environment.NewLine);
+        }
+
+        public static string getNewFileName()
+        {
+
+            string filename = null;
+            string contFlag = "t";
+
+
+            while(contFlag =="t")
+            {
+               Console.WriteLine("Enter the name you'd like to save the file as on server and press enter: ");
+               filename = Console.ReadLine();
+               Console.WriteLine("");
+
+               if(ResourcePathCheck.checkPathCharacters(filename))
+               {
+                    contFlag = "q";
+               }
+               else
+               {
+                    filename = null;
+                    Console.WriteLine("Type t to try again or any other character to quit: ");
+                    contFlag = Console.ReadLine();
+                    Console.WriteLine("");
+               }
+
+               
+            }
+
+            return filename;
         }
 
 
