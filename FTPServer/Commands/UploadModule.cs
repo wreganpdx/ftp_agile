@@ -10,16 +10,16 @@ using FluentFTP;
 /* TESTS RAN
  * 
  * 
- * COPYFILE
-BH:Copy an existing file to a valid directory that does not contain a file with the same name: Pass
-BH:Copy an existing file to a valid directory that does contain a file with the same name.The prompt should ask the user to rename the file:Pass
-BH:Attempt to copy a non existent file. Prompt should return file not found message and try again message:Pass
-BH:Attempt to copy an existing file to a non-existent directory. Prompt should alert user that dir does not exist: Pass
+BH:Renaming an existing file to a valid directory that does contain a file with the same name.Should recieve prompt asking for a new name: Pass
+BH:Renaming an existing file to a valid directory that does not` contain a file with the same name: Pass
+BH: Attempt to access non existent directory. Should receive prompt: Pass
+BH:Attempt to copy a non existent file in a directory. Prompt should return file not found message and try again message:Pass
 BH:Attempt to put invalid characters in filename. Should get a try again prompt: Pass
 BH:Attempt to put invalid chars in directory path. Should get try again prompt: Pass
-BH:CopyFile correctly reports success and exit status: Pass
+BH:renameFile correctly reports success and exit status: Pass
 BH:Exceptions don't cause program crash: Pass
- * 
+BH: renameFile does not attempt to write file if one of the required fields are null: Passs
+
  */
 
 
@@ -31,44 +31,76 @@ namespace FTPServer.Commands
     class UploadModule
     {
 
-        public static void copyFile()
+        public static void renameFile()
         {
-            string filepath = null;
-            string directorypathtocopy = null;
-            string filenamecopy = null;
-            Console.WriteLine("To use the copyfile utility, you must have R/W to files and folders you wish to read and write to.");
-         
-            filepath = checkLocalFile();
-           
-            if(filepath != null)
+            string filenameoriginal = null;
+            string directorypath = null;
+            string filerename = null;
+            string tryagain = "t";
+
+            Console.WriteLine("To use the rename file utility, you must have R/W to files and folders you wish to read and write to.");
+            Console.WriteLine("FILE TO RENAME DIRECTORY LOCATION PROMPT ");
+            directorypath = UploadModule.checkLocalDirectory(); 
+            
+            if(directorypath != null)
             {
-                Console.WriteLine("Directory To Copy To");
-                directorypathtocopy = UploadModule.checkLocalDirectory();
-            }
-           
-            if(directorypathtocopy != null)
-              { 
-                filenamecopy = UploadModule.checkFileName();
-              }
-            if(filenamecopy != null)
-            {
-                while(File.Exists(directorypathtocopy + filenamecopy))
+                
+                 Console.WriteLine("");
+                 Console.WriteLine("FILE TO RENAME NAME");
+                 filenameoriginal = UploadModule.checkFileName();
+
+                while(!File.Exists(directorypath + filenameoriginal))
                 {
-                    Console.WriteLine("A file exists in the specified location.Change the file name and try again.");
-                    filenamecopy = UploadModule.checkFileName();
+                    Console.WriteLine("File not found. Press t to try again or any other char to quit: ");
+                     tryagain = Console.ReadLine();    
+                    if(tryagain != "t")
+                    {
+                           break;    
+                    }
+
+                    filenameoriginal = UploadModule.checkFileName();
+                }
+            }               
+               
+            if(filenameoriginal != null)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("NEW FILE NAME PROMPT");
+
+                tryagain = "t";
+                while( tryagain == "t")
+                {
+                    filerename = UploadModule.checkFileName();
+
+                    if(File.Exists(directorypath + filerename))
+                    {
+                         Console.WriteLine("");
+                         Console.Write("A file with name already exists. Type to try again or any other char to quit and press enter: ");
+                         tryagain = Console.ReadLine(); 
+                    }
+                    else
+                    {
+                         Console.WriteLine("");
+                        Console.Write("File name not in use! Attempting to rename file!");
+                        tryagain = "q";
+                    }
                 }
             }
+            
             try
             {
-                if(filepath != null && directorypathtocopy!=null && filenamecopy != null)
+                if(filenameoriginal != null && directorypath != null && filerename != null)
                 {
-                    File.Copy(filepath, directorypathtocopy + filenamecopy);
-                    Console.WriteLine("Copy operation completed!");
+
+                    Console.WriteLine("");
+                    System.IO.File.Move(directorypath + filenameoriginal, directorypath + filerename);
+                    Console.WriteLine("Rename operation completed!");
 
                 }
                 else
                 {
-                    Console.WriteLine("Copy operation not completed!");
+                    Console.WriteLine("");
+                    Console.WriteLine("Rename operation not completed!");
                 }
            }
           catch(Exception e)
@@ -153,7 +185,7 @@ namespace FTPServer.Commands
                  }
                 else
                  {
-                    Console.WriteLine("File not found. Press t to try again or any other character to quit: ");
+                    Console.WriteLine("The file was not. Press t to try another filename or any other character to quit: ");
                     cont = Console.ReadLine();
                  }
             }
