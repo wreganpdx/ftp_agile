@@ -7,10 +7,129 @@ using System.Threading.Tasks;
 using FluentFTP;
 
 
+/* TESTS RAN
+ * 
+ * 
+ * COPYFILE
+BH:Copy an existing file to a valid directory that does not contain a file with the same name: Pass
+BH:Copy an existing file to a valid directory that does contain a file with the same name.The prompt should ask the user to rename the file:Pass
+BH:Attempt to copy a non existent file. Prompt should return file not found message and try again message:Pass
+BH:Attempt to copy an existing file to a non-existent directory. Prompt should alert user that dir does not exist: Pass
+BH:Attempt to put invalid characters in filename. Should get a try again prompt: Pass
+BH:Attempt to put invalid chars in directory path. Should get try again prompt: Pass
+BH:CopyFile correctly reports success and exit status: Pass
+BH:Exceptions don't cause program crash: Pass
+ * 
+ */
+
+
+
+
+
 namespace FTPServer.Commands
 {
     class UploadModule
     {
+
+        public static void copyFile()
+        {
+            string filepath = null;
+            string directorypathtocopy = null;
+            string filenamecopy = null;
+            Console.WriteLine("To use the copyfile utility, you must have R/W to files and folders you wish to read and write to.");
+         
+            filepath = checkLocalFile();
+           
+            if(filepath != null)
+            {
+                Console.WriteLine("Directory To Copy To");
+                directorypathtocopy = UploadModule.checkLocalDirectory();
+            }
+           
+            if(directorypathtocopy != null)
+              { 
+                filenamecopy = UploadModule.checkFileName();
+              }
+            if(filenamecopy != null)
+            {
+                while(File.Exists(directorypathtocopy + filenamecopy))
+                {
+                    Console.WriteLine("A file exists in the specified location.Change the file name and try again.");
+                    filenamecopy = UploadModule.checkFileName();
+                }
+            }
+            try
+            {
+                if(filepath != null && directorypathtocopy!=null && filenamecopy != null)
+                {
+                    File.Copy(filepath, directorypathtocopy + filenamecopy);
+                    Console.WriteLine("Copy operation completed!");
+
+                }
+                else
+                {
+                    Console.WriteLine("Copy operation not completed!");
+                }
+           }
+          catch(Exception e)
+          {
+                Console.WriteLine(e.Message);
+          }               
+        }
+
+        private static string checkFileName()
+        {
+            string tryagain = "t";
+            string filename = null;
+            
+            while(tryagain == "t")
+            {
+                Console.WriteLine("Enter the name of the file, path excluded and press enter: ");
+                filename = Console.ReadLine();
+
+                if(ResourcePathCheck.checkPathCharacters(filename))
+                {
+                    Console.WriteLine("Filename is valid!");
+                    tryagain = "q";
+                }
+                else
+                {
+                    filename= null;
+                    Console.Write("Type t to try again or any other char to quit and press enter: ");
+                    tryagain = Console.ReadLine();
+                }
+            }
+
+            return filename;
+        }
+
+        private static string checkLocalDirectory()
+        {
+            string tryagain = "t";
+            string directory = null;
+            
+            while(tryagain == "t")
+            {
+                Console.Write("Enter local directory location press enter: ");
+                directory = Console.ReadLine();
+
+                if(Directory.Exists(directory))
+                  {
+                    Console.WriteLine("Directory found");
+                    tryagain="q";
+                  }
+                else
+                  {
+                    directory = null; // reset directory in case user quits.
+                    Console.Write("Directory not found. Type t to try again or any other char to quit:");
+                    tryagain = Console.ReadLine();
+                  }
+            }
+
+            return directory;
+
+        }
+
         private static string checkLocalFile()
         {
             string filePathLocal = null;
@@ -42,6 +161,7 @@ namespace FTPServer.Commands
             return retVal;
         }
 
+       
         private static string checkRemoteDirectory(FtpClient client)
         {
             string DirPathRemote = null;

@@ -31,6 +31,7 @@ namespace FTPServer
                 Console.Write("5. Delete directory on remote server\n");
                 Console.Write("6. Create directory on remote server\n");
                 Console.Write("7. Put file on remote server\n");
+                Console.Write("8. Copy a local file.\n");
 
 
 
@@ -58,6 +59,9 @@ namespace FTPServer
                         break;
                     case 7:
                         Commands.UploadModule.uploadFile(client);
+                        break;
+                    case 8:
+                        Commands.UploadModule.copyFile();
                         break;
                 }
             }
