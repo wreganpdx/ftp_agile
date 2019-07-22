@@ -19,7 +19,7 @@ BH:Attempt to put invalid characters in filename. Should get a try again prompt:
 BH:Attempt to put invalid chars in directory path. Should get try again prompt: Pass
 BH:renameFile correctly reports success and exit status: Pass
 BH:Exceptions don't cause program crash: Pass
-BH: renameFile does not attempt to write file if one of the required fields are null: Passs
+BH: renameFile does not attempt to write file if one of the three required fields are null: Passs
 
 PutFile
 
@@ -49,15 +49,18 @@ namespace FTPServer.Commands
             string filerename = null;
             string tryagain = "t";
 
-            Console.WriteLine("To use the rename file utility, you must have R/W to files and folders you wish to read and write to.");
-            Console.WriteLine("FILE TO RENAME DIRECTORY LOCATION PROMPT ");
+            Console.WriteLine("Local File Renaming Utility");
+            Console.WriteLine(Environment.NewLine + "To use the rename file utility, you must have R/W to files and folders you wish to read and write to.");
+            Console.WriteLine(" ");
+
+            Console.WriteLine("File Directory Location");
             directorypath = UploadModule.checkLocalDirectory(); 
             
             if(directorypath != null)
             {
                 
                  Console.WriteLine("");
-                 Console.WriteLine("FILE TO RENAME NAME");
+                 Console.WriteLine("Source File Name Prompt");
                  filenameoriginal = UploadModule.checkFileName();
 
                 while(!File.Exists(directorypath + filenameoriginal))
@@ -77,7 +80,7 @@ namespace FTPServer.Commands
             if(filenameoriginal != null)
             {
                 Console.WriteLine("");
-                Console.WriteLine("NEW FILE NAME PROMPT");
+                Console.WriteLine("Target File Name Prompt");
 
                 tryagain = "t";
                 while( tryagain == "t")
@@ -181,6 +184,7 @@ namespace FTPServer.Commands
             
               while(cont == "t")
             {
+                Console.WriteLine();
                 Console.Write("Enter the path of the local file and press enter: ");
 
                 filePathLocal = Console.ReadLine();
@@ -194,8 +198,9 @@ namespace FTPServer.Commands
                  }
                 else
                  {
-                    Console.WriteLine("The file was not found. Press t to try another filename or any other character to quit: ");
+                    Console.Write("The file was not found. Press t to try another filename or any other character to quit: ");
                     cont = Console.ReadLine();
+                    Console.WriteLine("");
                  }
             }
 
@@ -208,7 +213,7 @@ namespace FTPServer.Commands
             string cont = "t";
               while(cont == "t")
               {
-                Console.Write("Enter the path of the remote directory and press enter: ");
+                Console.Write("Enter the path of the remote directory, ending with \\, and press enter: ");
 
                 DirPathRemote = Console.ReadLine();
 
@@ -219,9 +224,9 @@ namespace FTPServer.Commands
                  }
                 else
                  {
-                    Console.WriteLine("Remote directory not found. Press t to try again or any other character to quit: ");
+                    Console.Write("Remote directory not found. Press t to try again or any other character to quit: ");
                     cont = Console.ReadLine();
-                    Console.WriteLine();
+                    Console.WriteLine("");
                  }
                }
 
@@ -233,7 +238,7 @@ namespace FTPServer.Commands
             string filePathLocal = null;
             string filename = "saved";
             string tryagain = "t";
-    
+            Console.WriteLine(Environment.NewLine + "UPLOAD FILE");
             filePathLocal = UploadModule.checkLocalFile(); //file location on local machine
             
             if(filePathLocal != null)
@@ -257,9 +262,9 @@ namespace FTPServer.Commands
                        }
                         catch(Exception e)
                         {
-                            Console.Log(e.message);
+                            Console.WriteLine(e.Message);
                             tryagain = "q";
-                            Console.WriteLine("Upload Operation cancelled.")
+                            Console.WriteLine("Upload Operation cancelled.");
                         }                       
                     }             
                     else
@@ -285,7 +290,7 @@ namespace FTPServer.Commands
 
             while(contFlag =="t")
             {
-               Console.WriteLine("Enter the name you'd like to save the file as on server and press enter: ");
+               Console.Write("Enter the filename you'd like to store the source file as on the server and press enter. Be sure to include extension for proper formatting:  ");
                filename = Console.ReadLine();
                Console.WriteLine("");
 
@@ -296,7 +301,7 @@ namespace FTPServer.Commands
                else
                {
                     filename = null;
-                    Console.WriteLine("Type t to try again or any other character to quit: ");
+                    Console.Write("Type t to try again or any other character to quit: ");
                     contFlag = Console.ReadLine();
                     Console.WriteLine("");
                }
