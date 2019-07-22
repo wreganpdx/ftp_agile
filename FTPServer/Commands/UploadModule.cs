@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 using FluentFTP;
 
 
-/* TESTS RAN
+/* TESTS RAN -Berin Hadziabdic
  * 
- * 
+ *
+ Rename Local
 BH:Renaming an existing file to a valid directory that does contain a file with the same name.Should recieve prompt asking for a new name: Pass
 BH:Renaming an existing file to a valid directory that does not` contain a file with the same name: Pass
 BH: Attempt to access non existent directory. Should receive prompt: Pass
@@ -19,6 +20,16 @@ BH:Attempt to put invalid chars in directory path. Should get try again prompt: 
 BH:renameFile correctly reports success and exit status: Pass
 BH:Exceptions don't cause program crash: Pass
 BH: renameFile does not attempt to write file if one of the required fields are null: Passs
+
+PutFile
+
+BH: Attempting to upload a non existant file should give an appropriate prompt and press char != t will quit operation: Pass
+BH: Attempting to upload an existing file to non existing filename in a valid directory will succeed: Pass
+BH: Attempting to upload a existing file should give an appropriate prompt: Pass
+BH: Attempting to upload to a non existing server directory should give the try again prompt: Pass
+BH: Attempting to upload to an existing server directory should give the filename prompt: Pass
+BH: Attempting use invalid characters should return the proper prompt to user: Pass
+BH: In case of exception, putfile exits gracefully:
 
  */
 
@@ -52,7 +63,8 @@ namespace FTPServer.Commands
                 while(!File.Exists(directorypath + filenameoriginal))
                 {
                     Console.WriteLine("File not found. Press t to try again or any other char to quit: ");
-                     tryagain = Console.ReadLine();    
+                    tryagain = Console.ReadLine(); 
+                    
                     if(tryagain != "t")
                     {
                            break;    
@@ -75,12 +87,12 @@ namespace FTPServer.Commands
                     if(File.Exists(directorypath + filerename))
                     {
                          Console.WriteLine("");
-                         Console.Write("A file with name already exists. Type to try again or any other char to quit and press enter: ");
+                         Console.Write("A file with name already exists. Type t to try again or any other char to quit and press enter: ");
                          tryagain = Console.ReadLine(); 
                     }
                     else
                     {
-                         Console.WriteLine("");
+                        Console.WriteLine("");
                         Console.Write("File name not in use! Attempting to rename file!");
                         tryagain = "q";
                     }
@@ -108,7 +120,6 @@ namespace FTPServer.Commands
                 Console.WriteLine(e.Message);
           }               
         }
-
         private static string checkFileName()
         {
             string tryagain = "t";
@@ -134,7 +145,6 @@ namespace FTPServer.Commands
 
             return filename;
         }
-
         private static string checkLocalDirectory()
         {
             string tryagain = "t";
@@ -161,7 +171,6 @@ namespace FTPServer.Commands
             return directory;
 
         }
-
         private static string checkLocalFile()
         {
             string filePathLocal = null;
@@ -185,15 +194,13 @@ namespace FTPServer.Commands
                  }
                 else
                  {
-                    Console.WriteLine("The file was not. Press t to try another filename or any other character to quit: ");
+                    Console.WriteLine("The file was not found. Press t to try another filename or any other character to quit: ");
                     cont = Console.ReadLine();
                  }
             }
 
             return retVal;
         }
-
-       
         private static string checkRemoteDirectory(FtpClient client)
         {
             string DirPathRemote = null;
@@ -220,34 +227,55 @@ namespace FTPServer.Commands
 
               return retVal;
             }
-            
-        //uploadFile is used to upload files from local to remote.
         public static void uploadFile(FtpClient client)
         {
             string directoryPathRemote = null;
             string filePathLocal = null;
             string filename = "saved";
+            string tryagain = "t";
     
             filePathLocal = UploadModule.checkLocalFile(); //file location on local machine
             
             if(filePathLocal != null)
-             {
                 directoryPathRemote = UploadModule.checkRemoteDirectory(client); //location to write the local file to
-             }
 
             if(directoryPathRemote != null)
                filename = UploadModule.getNewFileName();
 
             if(filePathLocal != null && filename != null && directoryPathRemote != null)
               {
-                client.UploadFile(filePathLocal,directoryPathRemote + filename);
-                Console.WriteLine("File uploaded!");
-                Console.WriteLine("");
+                while(tryagain == "t")
+                {
+                    if(!client.FileExists(directoryPathRemote+filename))
+                    {
+                       try
+                       {
+                        client.UploadFile(filePathLocal,directoryPathRemote + filename);
+                        Console.WriteLine("File uploaded!!!");
+                        Console.WriteLine("");
+                        tryagain = "q";
+                       }
+                        catch(Exception e)
+                        {
+                            Console.Log(e.message);
+                            tryagain = "q";
+                            Console.WriteLine("Upload Operation cancelled.")
+                        }                       
+                    }             
+                    else
+                    {
+                        Console.WriteLine("A file with that name already exists in the specified directory.");
+                        Console.WriteLine("Would you like to try another filename? Press t to enter a new file name or any other char to cancel upload.");
+                        tryagain = Console.ReadLine();
+
+                        if(tryagain == "t")
+                           filename = UploadModule.getNewFileName();
+                    }
+                }
               }
             else
                 Console.WriteLine(Environment.NewLine + "Upload operation not completed!" + Environment.NewLine);
-        }
-
+        }        
         public static string getNewFileName()
         {
 
@@ -278,8 +306,6 @@ namespace FTPServer.Commands
 
             return filename;
         }
-
-
         public static void makeDir(FtpClient client)
         {
 
