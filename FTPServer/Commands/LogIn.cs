@@ -41,6 +41,7 @@ namespace FTPServer.Commands
                         if (key.Key == ConsoleKey.Enter)
                             break;
                         password += key.KeyChar;
+                        Console.Write("*");
                     }
 
                     client = new FtpClient(ip); // create an FTP client using ip
