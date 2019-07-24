@@ -55,7 +55,7 @@ namespace FTPServer
                         Commands.DeleteModule.deleteDir(client);
                         break;
                     case 6:
-                        Commands.UploadModule.makeDir(client);
+                        Commands.MakeDir.makeDir(client);
                         break;
                     case 7:
                         Commands.UploadModule.uploadFile(client);
