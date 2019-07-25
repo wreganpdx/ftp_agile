@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net20;net35;net40;net45;netstandard1.4;netstandard1.6</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net20' Or '$(TargetFramework)'=='net35' Or '$(TargetFramework)'=='net40' Or '$(TargetFramework)'=='net45'">
+    <DefineConstants>$(DefineConstants);NETFX</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net20'">
+    <DefineConstants>$(DefineConstants);LINQBRIDGE_LIB</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.6' Or '$(TargetFramework)'=='netstandard1.4'">
+    <DefineConstants>$(DefineConstants);CORE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.4'">
+    <DefineConstants>$(DefineConstants);CORE14;NO_SSL</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net45' Or $(DefineConstants.Contains('CORE'))">
+    <DefineConstants>$(DefineConstants);ASYNC</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>FluentFTP</PackageId>
+    <Title>FluentFTP</Title>
+    <Description>An FTP and FTPS client for .NET &amp; .NET Standard, optimized for speed. Provides extensive FTP commands, File uploads/downloads, SSL/TLS connections, Automatic directory listing parsing, File hashing/checksums, File permissions/CHMOD, FTP proxies, UTF-8 support, Async/await support and more. Written entirely in C#, with no external dependencies.</Description>
+    <Authors>Robin Rodricks, J.P. Trosclair, FluentFTP Contributors</Authors>
+    <PackageLicenseUrl>https://github.com/robinrodricks/FluentFTP/blob/master/LICENSE.TXT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/robinrodricks/FluentFTP</PackageProjectUrl>
+    <Copyright>MIT License</Copyright>
+    <PackageTags>ftp,ftp-client,ftps,ssl,tls,unix,iis</PackageTags>
+    <VersionPrefix>25.0.5</VersionPrefix>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\FluentFTP.xml</DocumentationFile>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>sn.snk</AssemblyOriginatorKeyFile>
+    <Version>25.0.5</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$(DefineConstants.Contains('NETFX'))">
+    <Reference Include="System.Web" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(DefineConstants.Contains('CORE'))">
+    <PackageReference Include="System.Console" Version="4.3.0.0" />
+    <PackageReference Include="System.IO" Version="4.3.0.0" />
+    <PackageReference Include="System.Net.NameResolution" Version="4.3.0.0" />
+    <PackageReference Include="System.Net.Sockets" Version="4.3.0.0" />
+    <PackageReference Include="System.Runtime" Version="4.3.0.0" />
+    <PackageReference Include="System.Threading.Tasks" Version="4.3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.6'">
+    <PackageReference Include="System.Net.Security" Version="4.3.0.0" />
+    <PackageReference Include="System.Threading.Thread" Version="4.3.0.0" />
+  </ItemGroup>
+
+</Project>

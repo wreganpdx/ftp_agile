@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D894E7A-FE77-43E9-A8D5-4BD7455309DC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>FTPServer</RootNamespace>
+    <AssemblyName>FTPServer</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Chmod.cs" />
+    <Compile Include="Commands\GetFile.cs" />
+    <Compile Include="Commands\GetMultiple.cs" />
+    <Compile Include="Commands\MakeDir.cs" />
+    <Compile Include="Commands\LogOff.cs" />
+    <Compile Include="Commands\LogIn.cs" />
+    <Compile Include="Commands\PutMultiple.cs" />
+    <Compile Include="Commands\RemoteLs.cs" />
+    <Compile Include="Commands\Rename.cs" />
+    <Compile Include="Commands\ResourcePathCheck.cs" />
+    <Compile Include="Commands\SaveLoginInfo.cs" />
+    <Compile Include="Commands\UploadModule.cs" />
+    <Compile Include="Commands\DeleteModule.cs" />
+    <Compile Include="Commands\UseLogin.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Connection.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Hash.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_HighLevel.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Listing.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_LowLevel.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Management.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_ServerSpecific.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\IFtpClient.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpCapability.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpDataConnectionType.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpDataType.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpDate.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpEncryptionMode.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpError.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpExists.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpFileSystemObjectType.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpHashAlgorithm.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpIpVersion.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpListOption.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpLocalExists.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpOperatingSystem.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpParser.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpPermission.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpResponseType.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpsBuffering.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpServer.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpSpecialPermissions.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpTraceLevel.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpVerify.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpEvents.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpExceptions.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpHash.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpListItem.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpListParser.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpProgress.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpReply.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpTrace.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\IntRef.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Proxy\FtpClientBlueCoatProxy.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Proxy\FtpClientHttp11Proxy.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Proxy\FtpClientProxy.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Proxy\FtpClientUserAtHostProxy.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Proxy\ProxyInfo.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Stream\FtpDataStream.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Stream\FtpSocketStream.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Stream\FtpSslStream.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Utils\FtpExtensions.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Utils\FtpReflection.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Utils\NET2Compatibility.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="FluentFTP-master\.editorconfig" />
+    <None Include="FluentFTP-master\.gitignore" />
+    <None Include="FluentFTP-master\appveyor.yml" />
+    <None Include="FluentFTP-master\FluentFTP\restore.bat" />
+    <None Include="FluentFTP-master\FluentFTP\sn.snk" />
+    <None Include="FluentFTP-master\ISSUE_TEMPLATE.md" />
+    <None Include="FluentFTP-master\NOTES.md" />
+    <None Include="FluentFTP-master\README.md" />
+    <None Include="FluentFTP-master\RELEASES.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FluentFTP-master\FluentFTP.sln" />
+    <Content Include="FluentFTP-master\FluentFTP\FluentFTP.csproj" />
+    <Content Include="FluentFTP-master\LICENSE.TXT" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
