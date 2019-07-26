@@ -49,8 +49,34 @@ namespace FTPServer
                 }
                 catch (Exception connectionException)
                 {
+<<<<<<< Updated upstream
                     //print exception to console since we don't have a log file
                     Console.WriteLine(Environment.NewLine + connectionException.Message + Environment.NewLine);
+=======
+                    case 0:
+                        Console.WriteLine("Bye!");
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        Commands.DeleteDir.deleteDir(client);
+                        break;
+                    case 6:
+                        Commands.MakeDir.makeDir(client);
+                        break;
+                    case 7:
+                        Commands.PutFile.putFile(client);
+                        break;
+                    case 8:
+                        Commands.RenameFile.renameFile(client);
+                        break;
+>>>>>>> Stashed changes
                 }
                 finally //finally, we ask user if they'd like to try another log in attempt.
                 {
@@ -99,7 +125,19 @@ namespace FTPServer
         }
         static void Main(string[] args)
         {
+<<<<<<< Updated upstream
             Program.LogIn();
+=======
+           //192.168.1.11
+           Console.WriteLine("FTP CLIENT" + Environment.NewLine);
+
+           client = Commands.LogIn.logIn();
+           
+          if(client != null && client.IsConnected)
+             Program.OptionPrompt();
+
+          Console.WriteLine("Exiting FTP client!");
+>>>>>>> Stashed changes
         }
     }
 }
