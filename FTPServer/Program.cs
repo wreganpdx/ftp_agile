@@ -75,7 +75,7 @@ namespace FTPServer
            client = Commands.LogIn.logIn();
            
           if(client != null && client.IsConnected)
-             Program.OptionPrompt();
+             Program.OptionPrompt();  
         }
     }
 }

@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\DeleteDir.cs" />
+    <Compile Include="Commands\PutFile.cs" />
+    <Compile Include="Commands\RenameFile.cs" />
     <Compile Include="Commands\Chmod.cs" />
     <Compile Include="Commands\GetFile.cs" />
     <Compile Include="Commands\GetMultiple.cs" />
@@ -55,10 +58,7 @@
     <Compile Include="Commands\PutMultiple.cs" />
     <Compile Include="Commands\RemoteLs.cs" />
     <Compile Include="Commands\Rename.cs" />
-    <Compile Include="Commands\ResourcePathCheck.cs" />
     <Compile Include="Commands\SaveLoginInfo.cs" />
-    <Compile Include="Commands\UploadModule.cs" />
-    <Compile Include="Commands\DeleteModule.cs" />
     <Compile Include="Commands\UseLogin.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Connection.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Hash.cs" />
