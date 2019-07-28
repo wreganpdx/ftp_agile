@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,19 +33,19 @@ namespace FTPServer.Commands
                 }
                 else //The directory does not exist. Attempt to make it.
                 {
-                  try
-                  {
-                    client.CreateDirectory(newDirectoryRemote);
-                    cont = "q";
-                  }
-                  catch(Exception e)
-                  {
-                    Console.WriteLine("An error ocurred: " + e.Message);
-                    Console.WriteLine("Would you like to try again. Type t to try again or any other char to quit and press enter: ");
-                    cont = Console.ReadLine();
-                  }
+                    try
+                    {
+                        client.CreateDirectory(newDirectoryRemote);
+                        cont = "q";
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("An error ocurred: " + e.Message);
+                        Console.WriteLine("Would you like to try again. Type t to try again or any other char to quit and press enter: ");
+                        cont = Console.ReadLine();
+                    }
                 }
             }
         }
     }
-};
+}
