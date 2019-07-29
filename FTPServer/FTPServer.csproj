@@ -45,10 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
+    <Compile Include="Commands\RenameRemoteDir.cs" />
     <Compile Include="Commands\RenameFile.cs" />
     <Compile Include="Commands\MakeDir.cs" />
-    <Compile Include="Commands\LogOff.cs" />
     <Compile Include="Commands\LogIn.cs" />
     <Compile Include="Commands\PutFile.cs" />
     <Compile Include="Commands\DeleteDir.cs" />
