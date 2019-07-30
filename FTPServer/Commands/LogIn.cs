@@ -40,14 +40,14 @@ namespace FTPServer.Commands
                     Console.Write("Enter the username field to connect with and press enter: ");
                     username = Console.ReadLine(); //read in username
                     Console.Write("Enter the password field to connect with and press enter: ");
-                    //password = Console.ReadLine(); //read in password
-                    while (true)
-                    {
-                        var key = System.Console.ReadKey(true);
-                        if (key.Key == ConsoleKey.Enter)
-                            break;
-                        password += key.KeyChar;
-                    }
+                    password = Console.ReadLine(); //read in password
+                    //while (true)
+                    //{
+                    //    var key = System.Console.ReadKey(true);
+                    //    if (key.Key == ConsoleKey.Enter)
+                    //        break;
+                    //    password += key.KeyChar;
+                    //}
 
                     client = new FtpClient(ip); // create an FTP client using ip
                     client.Credentials = new System.Net.NetworkCredential(username, password); //Create credentials

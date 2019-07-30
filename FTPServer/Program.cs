@@ -32,6 +32,7 @@ namespace FTPServer
                 Console.Write("6. Create directory on remote server\n");
                 Console.Write("7. Put file on remote server\n");
                 Console.Write("8. Rename a local file.\n");
+                Console.Write("9. Record all history to log.\n");
 
 
 
@@ -50,6 +51,7 @@ namespace FTPServer
                     case 3:
                         break;
                     case 4:
+                        Commands.RemoteLs.remote_Ls(client);
                         break;
                     case 5:
                         Commands.DeleteDir.deleteDir(client);
@@ -63,6 +65,9 @@ namespace FTPServer
                     case 8:
                         Commands.RenameFile.renameFile(client);
                         break;
+                    case 9:
+                        Commands.LogHistory.log_History();
+                        break;
                 }
             }
 
@@ -71,8 +76,8 @@ namespace FTPServer
         {
            //192.168.1.11
            Console.WriteLine("FTP CLIENT" + Environment.NewLine);
-
-           client = Commands.LogIn.logIn();
+            
+            client = Commands.LogIn.logIn();
            
           if(client != null && client.IsConnected)
              Program.OptionPrompt();  
