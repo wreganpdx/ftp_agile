@@ -12,11 +12,11 @@ namespace FTPServer.Commands
             {
                 // log file is located at /FTPServer/bin/Debug/log_file.txt
                 FtpTrace.AddListener(new TextWriterTraceListener("log_file.txt"));
-
+                // turn these back on if you want to record the sensitive data
                 FtpTrace.LogUserName = false;   // hide FTP user names
                 FtpTrace.LogPassword = false;   // hide FTP passwords
                 FtpTrace.LogIP = false; 	// hide FTP server IP addresses
-                Console.WriteLine("Logging history in /FTPServer/bin/Debug/log_file.txt");
+                Console.WriteLine("Logging history to file /FTPServer/bin/Debug/log_file.txt");
             }
             catch (Exception e)
             {

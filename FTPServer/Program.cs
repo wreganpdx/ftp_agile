@@ -32,7 +32,8 @@ namespace FTPServer
                 Console.Write("6. Create directory on remote server\n");
                 Console.Write("7. Put file on remote server\n");
                 Console.Write("8. Rename a local file.\n");
-                Console.Write("9. Record all history to log.\n");
+                Console.Write("9. Log history to file.\n");
+                Console.Write("10. List files on remote server.\n");
 
 
 
@@ -47,11 +48,12 @@ namespace FTPServer
                     case 1:
                         break;
                     case 2:
+                        LogOff.logOff(client);
                         break;
                     case 3:
                         break;
                     case 4:
-                        Commands.RemoteLs.remote_Ls(client);
+                        Commands.List.DirSearch();
                         break;
                     case 5:
                         Commands.DeleteDir.deleteDir(client);
@@ -67,6 +69,9 @@ namespace FTPServer
                         break;
                     case 9:
                         Commands.LogHistory.log_History();
+                        break;
+                    case 10:
+                        Commands.RemoteLs.remote_Ls(client);
                         break;
                 }
             }
