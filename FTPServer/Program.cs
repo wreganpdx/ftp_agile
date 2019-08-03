@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using FluentFTP;
 using FTPServer.Commands;
@@ -62,6 +61,9 @@ namespace FTPServer
                         break;
                     case 8:
                         Commands.RenameFile.renameFile(client);
+                        break;
+                    case 9:
+                        Commands.PutMultiple.putMultiple(client);
                         break;
                 }
             }

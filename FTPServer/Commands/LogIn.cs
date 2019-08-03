@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentFTP;
-
 /*
  *Logging in with invalid credentials returns the try again prompt:  Pass
  *Logging in with valid credentials returns the option prompt:  Pass
@@ -25,13 +24,15 @@ namespace FTPServer.Commands
             string username = "";
             string password = "";
             string ip = "";
+            string answer = "";
 
             
             while (continuePrompt == 'Y')
             {
                 try
                 {
-                    Console.Write( Environment.NewLine + "Enter the I.P to connect to and press enter: ");
+
+                    Console.Write(Environment.NewLine + "Enter the I.P to connect to and press enter: ");
 
                     ip = Console.ReadLine(); //read in ip
 
@@ -52,10 +53,22 @@ namespace FTPServer.Commands
                     client = new FtpClient(ip); // create an FTP client using ip
                     client.Credentials = new System.Net.NetworkCredential(username, password); //Create credentials
                     client.Connect(); //Connect to client
-
+                    Console.WriteLine("===");
+                    Console.WriteLine("Would you like to save login info for next time (y/n)?");
+                    answer = Console.ReadLine();
+                    Console.WriteLine("===");
+                    answer = answer.ToUpper();
+                    if (answer == "Y")
+                    {
+                        SaveLoginInfo.saveLoginInfo(ip, username, password);
+                    }
+                    else
+                    {
+                        Console.WriteLine("NON-POSITIVE response, not saving login info...");
+                    }
                     if (client.IsConnected) //If connect success
                     {
-                        continuePrompt = 'N'; //Setting continuePrompt flag to N ensures we escape for loop.
+                        continuePrompt = 'N'; //Setting continuePrompt flag to N ensures we escape for loop
                     }
                     else
                     {
@@ -74,7 +87,6 @@ namespace FTPServer.Commands
 
                 
              }
-
             return client;
         }
     }

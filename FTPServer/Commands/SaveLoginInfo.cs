@@ -9,18 +9,17 @@ using System.IO;
 
 namespace FTPServer.Commands
 {
-    public class SaveLoginInfo
+
+    static public class SaveLoginInfo
     {
-        static string path = "/Users/iobrien/ftp_agile/login_info.txt";
+        static string path = "";
 
         static public void saveLoginInfo(string ip, string username, string password)
-        {
-            if (!File.Exists(path))
-            {
-                Console.Write("\n file " + path + " does not exist\n");
-            }
-            string[] createText = { ip, username, password };
-            File.WriteAllLines(path, createText);
+        { 
+                Console.Write("enter full path to to blank file to save login info: ");
+                path = Console.ReadLine();
+                string[] createText = { ip, username, password };
+                File.WriteAllLines(path, createText);
         }
     }
 }
