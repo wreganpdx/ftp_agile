@@ -9,17 +9,21 @@ using System.IO;
 
 namespace FTPServer.Commands
 {
-
     static public class SaveLoginInfo
     {
         static string path = "";
 
         static public void saveLoginInfo(string ip, string username, string password)
-        { 
-                Console.Write("enter full path to to blank file to save login info: ");
-                path = Console.ReadLine();
-                string[] createText = { ip, username, password };
-                File.WriteAllLines(path, createText);
+        {
+            Console.Write("enter full path to to blank file to save login info: ");
+            path = Console.ReadLine();
+            string[] createText = { ip, username, password };
+            File.WriteAllLines(path, createText);
+
         }
     }
 }
+
+    
+
+

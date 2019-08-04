@@ -31,6 +31,7 @@ namespace FTPServer
                 Console.Write("6. Create directory on remote server\n");
                 Console.Write("7. Put file on remote server\n");
                 Console.Write("8. Rename a local file.\n");
+                Console.Write("9. Put Multiple files on remote machine.\n");
 
 
 
