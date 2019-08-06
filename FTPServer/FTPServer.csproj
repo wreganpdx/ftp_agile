@@ -38,6 +38,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>agile.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -146,6 +149,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="agile.ico" />
     <Content Include="FluentFTP-master\FluentFTP.sln" />
     <Content Include="FluentFTP-master\FluentFTP\FluentFTP.csproj" />
     <Content Include="FluentFTP-master\LICENSE.TXT" />
