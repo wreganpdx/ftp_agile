@@ -12,7 +12,6 @@ namespace FTPServer.Commands
                 string working_directory;
                 Console.WriteLine("What is the absolute path of the directory you want displayed locally?");
                 working_directory = Console.ReadLine();
-                Console.WriteLine("Entered ls command.");
                 foreach (string d in Directory.GetDirectories(working_directory))
                 {
                     Console.WriteLine(d);
