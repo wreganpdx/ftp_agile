@@ -7,7 +7,11 @@ using FluentFTP;
 using FTPServer.Commands;
 using System.IO;
 
-
+/*
+ *BH: Attempting to rename a non existing directory returns the appropriate prompt: Pass 
+ * BH: Attempting to enter invalid chars or empty strings returns the appropriaye prompt: Pass
+ * BH: Attempting to rename a directory to an existing directory returns the appropriayte prompt: 
+ */
 namespace FTPServer
 {
 
