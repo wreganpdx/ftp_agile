@@ -47,7 +47,7 @@ namespace FTPServer
                     	Commands.GetFile.getFile(client);
                         break;
                     case 2:
-                    	Commands.LogOff.logOff();
+                    	Commands.LogOff.logOff(client);
                         break;
                     case 3:
                     	Commands.GetMultiple.getmpFile(client);
