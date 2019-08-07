@@ -44,10 +44,13 @@ namespace FTPServer
                         Console.WriteLine("Bye!");
                         break;
                     case 1:
+                    	Commands.GetFile.getFile(client);
                         break;
                     case 2:
+                    	Commands.LogOff.logOff();
                         break;
                     case 3:
+                    	Commands.GetMultiple.getmpFile(client);
                         break;
                     case 4:
                         break;
