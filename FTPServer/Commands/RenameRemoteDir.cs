@@ -13,7 +13,7 @@ BH: Attempting ro rename an existing directory to another existing directory sho
 BH: Attempting to rename an existing directory to a non existing directory should be successful:
 BH: Attempting to use invalid characters in either of the two directory names should elicit an error and the appropriate prompt response: BH
 BH: Renaming an existing directory to a currently non existing directory is succesfull.
-BH: Possible exceptions are handled  gracefullly: Berin
+BH: Possible exceptions are handled  gracefullly: Pass
  */
 namespace FTPServer.Commands
 {
