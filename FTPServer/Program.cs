@@ -22,7 +22,8 @@ namespace FTPServer
         public static void OptionPrompt()
         {
             string newAction = null;
-
+            int action;          
+  
             while (newAction != "0")
             {
                 Console.WriteLine("");
@@ -42,7 +43,15 @@ namespace FTPServer
 
 
                 newAction = Console.ReadLine(); //read in ip
-                int action = Convert.ToInt32(newAction);
+
+                try{
+                   action = Int32.Parse(newAction);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("Unexpected input. Please enter a number between 0 and Y");
+                    continue;
+                }
 
                 switch (action)
                 {
@@ -71,6 +80,9 @@ namespace FTPServer
                         break;
                     case 9:
                         Commands.RenameRemoteDir.renameDir(client);
+                        break;
+                    default:
+                        Console.WriteLine("You selected an unsupported option.");
                         break;
                 }
             }
