@@ -80,7 +80,6 @@
     <Compile Include="Commands\SaveLoginInfo.cs" />
     <Compile Include="Commands\UseLogin.cs" />
     <Compile Include="Commands\MakeDir.cs" />
-    <Compile Include="Commands\ResourcePathCheck.cs" />
     <Compile Include="Commands\UploadModule.cs" />
     <Compile Include="Commands\DeleteModule.cs" />
     <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Connection.cs" />
@@ -163,7 +162,7 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\xunit.core.2.4.1\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.4.1\build\xunit.core.props'))" />
+    <Error Condition="!Exists('..\packages\xunit.core.2.4.1\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.4.1\build\xunit.core.props'))" /> 
     <Error Condition="!Exists('..\packages\xunit.core.2.4.1\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.4.1\build\xunit.core.targets'))" />
     <Error Condition="!Exists('..\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props'))" />
   </Target>

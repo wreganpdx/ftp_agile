@@ -32,7 +32,7 @@ namespace FTPServer
                 Console.Write("6. Create directory on remote server\n");
                 Console.Write("7. Put file on remote server\n");
                 Console.Write("8. Rename a local file.\n");
-
+                Console.Write("9. Rename a remote directory.\n");
 
 
                 newAction = Console.ReadLine(); //read in ip
@@ -66,13 +66,16 @@ namespace FTPServer
                     case 8:
                         Commands.RenameFile.renameFile(client);
                         break;
+                    case 9:
+                        Commands.RenameRemoteDir.renameDir(client);
+                        break;
                 }
             }
 
         }
         static void Main(string[] args)
         {
-           //192.168.1.11
+           
            Console.WriteLine("FTP CLIENT" + Environment.NewLine);
 
            client = Commands.LogIn.logIn();
