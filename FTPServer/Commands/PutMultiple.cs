@@ -16,7 +16,7 @@ namespace FTPServer.Commands
 			}
 
             // loop back to prompt
-			Program.OptionPrompt();
+			//Program.OptionPrompt();
 			
 		}
 	}

@@ -29,7 +29,7 @@ namespace FTPServer.Commands
             }
             else
             {
-                Program.OptionPrompt();
+                //Program.OptionPrompt();
             }
         }
     }
