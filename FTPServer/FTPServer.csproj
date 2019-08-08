@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\RenameRemoteDir.cs" />
     <Compile Include="Commands\DeleteDir.cs" />
     <Compile Include="Commands\PutFile.cs" />
     <Compile Include="Commands\RenameFile.cs" />
