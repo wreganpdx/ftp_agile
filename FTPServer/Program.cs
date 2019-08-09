@@ -33,6 +33,7 @@ namespace FTPServer
                 Console.Write("7. Put file on remote server\n");
                 Console.Write("8. Rename a local file.\n");
                 Console.Write("9. Rename a remote directory.\n");
+                Console.Write("10. Chmod.\n");
 
 
                 newAction = Console.ReadLine(); //read in ip
@@ -68,6 +69,11 @@ namespace FTPServer
                         break;
                     case 9:
                         Commands.RenameRemoteDir.renameDir(client);
+                        break;
+                    case 10:
+                        Commands.Chmod.change_Permissions(client);
+                        break;
+                    case 11:
                         break;
                 }
             }
