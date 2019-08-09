@@ -109,7 +109,7 @@ namespace FTPServer
 
             sr = new StringReader(s);
             Console.SetIn(sr);
-            Commands.DeleteModule.deleteDir(ClientInstance.getInstance());
+            Commands.DeleteDir.deleteDir(ClientInstance.getInstance());
             Assert.False(ClientInstance.getInstance().DirectoryExists(s));
         }
 
