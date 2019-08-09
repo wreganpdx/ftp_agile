@@ -31,7 +31,7 @@ namespace FTPServer.Commands
                 {
 
                     Console.WriteLine("Invalid Command. Must be in the form 'rename absolute/path/to/<original_file> absolute/path/to/<updated_file>'");
-                    Program.OptionPrompt();
+                    //Program.OptionPrompt();
                 }
                 else
                 {
