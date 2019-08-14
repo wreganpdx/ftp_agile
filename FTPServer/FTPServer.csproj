@@ -132,6 +132,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests.cs" />
+    <Compile Include="Commands\List.cs" />
+    <Compile Include="Commands\LogHistory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
