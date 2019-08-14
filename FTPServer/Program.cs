@@ -68,13 +68,14 @@ namespace FTPServer
                         Commands.RenameFile.renameFile(client);
                         break;
                     case 9:
-                        Commands.RenameRemoteDir.renameDir(client);
                         break;
                     case 10:
                         Commands.Chmod.change_Permissions(client);
                         break;
-                    case 11:
+                    case 12:
+                        Commands.RenameRemoteDir.renameDir(client);
                         break;
+
                 }
             }
 
