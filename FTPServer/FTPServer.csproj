@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props" Condition="Exists('..\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props')" />
+  <Import Project="..\packages\xunit.core.2.4.1\build\xunit.core.props" Condition="Exists('..\packages\xunit.core.2.4.1\build\xunit.core.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D894E7A-FE77-43E9-A8D5-4BD7455309DC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>FTPServer</RootNamespace>
+    <AssemblyName>FTPServer</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>agile.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.abstractions.2.0.3\lib\net35\xunit.abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.assert, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.assert.2.4.1\lib\netstandard1.1\xunit.assert.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.extensibility.core.2.4.1\lib\net452\xunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.execution.desktop, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.extensibility.execution.2.4.1\lib\net452\xunit.execution.desktop.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\RenameRemoteDir.cs" />
+    <Compile Include="Commands\DeleteDir.cs" />
+    <Compile Include="Commands\PutFile.cs" />
+    <Compile Include="Commands\RenameFile.cs" />
+    <Compile Include="Commands\Chmod.cs" />
+    <Compile Include="Commands\GetFile.cs" />
+    <Compile Include="Commands\GetMultiple.cs" />
+    <Compile Include="Commands\LogOff.cs" />
+    <Compile Include="Commands\LogIn.cs" />
+    <Compile Include="Commands\PutMultiple.cs" />
+    <Compile Include="Commands\RemoteLs.cs" />
+    <Compile Include="Commands\Rename.cs" />
+    <Compile Include="Commands\SaveLoginInfo.cs" />
+    <Compile Include="Commands\UseLogin.cs" />
+    <Compile Include="Commands\MakeDir.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Connection.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Hash.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_HighLevel.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Listing.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_LowLevel.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_Management.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\FtpClient_ServerSpecific.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Client\IFtpClient.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpCapability.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpDataConnectionType.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpDataType.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpDate.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpEncryptionMode.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpError.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpExists.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpFileSystemObjectType.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpHashAlgorithm.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpIpVersion.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpListOption.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpLocalExists.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpOperatingSystem.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpParser.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpPermission.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpResponseType.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpsBuffering.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpServer.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpSpecialPermissions.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpTraceLevel.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Enums\FtpVerify.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpEvents.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpExceptions.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpHash.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpListItem.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpListParser.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpProgress.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpReply.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\FtpTrace.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Helpers\IntRef.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Proxy\FtpClientBlueCoatProxy.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Proxy\FtpClientHttp11Proxy.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Proxy\FtpClientProxy.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Proxy\FtpClientUserAtHostProxy.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Proxy\ProxyInfo.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Stream\FtpDataStream.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Stream\FtpSocketStream.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Stream\FtpSslStream.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Utils\FtpExtensions.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Utils\FtpReflection.cs" />
+    <Compile Include="FluentFTP-master\FluentFTP\Utils\NET2Compatibility.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTests.cs" />
+    <Compile Include="Commands\List.cs" />
+    <Compile Include="Commands\LogHistory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="FluentFTP-master\.editorconfig" />
+    <None Include="FluentFTP-master\.gitignore" />
+    <None Include="FluentFTP-master\appveyor.yml" />
+    <None Include="FluentFTP-master\FluentFTP\restore.bat" />
+    <None Include="FluentFTP-master\FluentFTP\sn.snk" />
+    <None Include="FluentFTP-master\ISSUE_TEMPLATE.md" />
+    <None Include="FluentFTP-master\NOTES.md" />
+    <None Include="FluentFTP-master\README.md" />
+    <None Include="FluentFTP-master\RELEASES.md" />
+    <None Include="packages.config" />
+    <None Include="FTPServer.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="agile.ico" />
+    <Content Include="FluentFTP-master\FluentFTP.sln" />
+    <Content Include="FluentFTP-master\FluentFTP\FluentFTP.csproj" />
+    <Content Include="FluentFTP-master\LICENSE.TXT" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\xunit.core.2.4.1\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.4.1\build\xunit.core.props'))" /> 
+    <Error Condition="!Exists('..\packages\xunit.core.2.4.1\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.4.1\build\xunit.core.targets'))" />
+    <Error Condition="!Exists('..\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props'))" />
+  </Target>
+  <Import Project="..\packages\xunit.core.2.4.1\build\xunit.core.targets" Condition="Exists('..\packages\xunit.core.2.4.1\build\xunit.core.targets')" />
+</Project>
