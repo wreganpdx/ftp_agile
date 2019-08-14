@@ -21,7 +21,7 @@ namespace FTPServer.Commands
                 client.Disconnect();
                 if (!client.IsConnected)
                 {
-                    Console.Write("Client got disconnected from the FTP server.\n\rPress any key to exit...");
+                    Console.Write("Client got disconnected from the FTP server.");
                     Console.ReadKey();
                 }
                 else
@@ -30,10 +30,6 @@ namespace FTPServer.Commands
                 }
                 Console.Write("Logging off");
                 client.Disconnect();
-            }
-            else
-            {
-                //Program.OptionPrompt();
             }
         }
     }
