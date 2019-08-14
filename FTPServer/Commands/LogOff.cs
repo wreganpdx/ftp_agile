@@ -1,4 +1,6 @@
 using System;
+﻿using System;
+using FluentFTP;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,6 +28,8 @@ namespace FTPServer.Commands
                 {
                     Console.Write("Client could not disconnect, try again");
                 }
+                Console.Write("Logging off");
+                client.Disconnect();
             }
             else
             {

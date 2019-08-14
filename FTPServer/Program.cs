@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using FluentFTP;
 using FTPServer.Commands;
@@ -32,8 +31,10 @@ namespace FTPServer
                 Console.Write("6. Create directory on remote server\n");
                 Console.Write("7. Put file on remote server\n");
                 Console.Write("8. Rename a local file.\n");
+                // dont forget to call put multiple
                 Console.Write("9. Rename a remote directory.\n");
                 Console.Write("10. Chmod.\n");
+
 
 
                 newAction = Console.ReadLine(); //read in ip
@@ -68,6 +69,7 @@ namespace FTPServer
                         Commands.RenameFile.renameFile(client);
                         break;
                     case 9:
+                        Commands.PutMultiple.putMultiple(client);
                         break;
                     case 10:
                         Commands.Chmod.change_Permissions(client);
@@ -78,7 +80,6 @@ namespace FTPServer
 
                 }
             }
-
         }
         static void Main(string[] args)
         {
