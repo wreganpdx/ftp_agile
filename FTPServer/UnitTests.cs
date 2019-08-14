@@ -58,6 +58,46 @@ namespace FTPServer
         }
 
         [Fact]
+        public void renameFileTest()
+        {
+            // Specify a name for your top-level folder.
+            string folderName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            Console.WriteLine("Folder of base directory: " + folderName);
+
+
+
+            // Create a file name for the file you want to create. 
+            string fileName = RandomString(8) + ".txt";
+
+
+            string fullPath = System.IO.Path.Combine(folderName, fileName);
+
+            if (!System.IO.File.Exists(fullPath))
+            {
+                using (System.IO.FileStream fs = System.IO.File.Create(fullPath))
+                {
+                    for (byte i = 0; i < 100; i++)
+                    {
+                        fs.WriteByte(i);
+                    }
+                }
+            }
+            string fileName2 = RandomString(8) + ".txt";
+
+
+            string fullPath2 = System.IO.Path.Combine(folderName, fileName2);
+            Console.WriteLine("Folder of fullpath: " + fullPath);
+            var sr = new StringReader(fullPath + "\n" + fileName2);
+            Console.SetIn(sr);
+          // var sr2 = new StringReader(fullPath2);
+          //  Console.SetIn(sr2);
+
+            Commands.RenameFile.renameFile(ClientInstance.getInstance());
+            Assert.True(ClientInstance.getInstance().FileExists(fileName2));
+            Assert.False(ClientInstance.getInstance().FileExists(fileName));
+        }
+
+        [Fact]
         public void delDirTest()
         {
             String s = RandomString(8);
@@ -69,7 +109,7 @@ namespace FTPServer
 
             sr = new StringReader(s);
             Console.SetIn(sr);
-            Commands.DeleteModule.deleteDir(ClientInstance.getInstance());
+            Commands.DeleteDir.deleteDir(ClientInstance.getInstance());
             Assert.False(ClientInstance.getInstance().DirectoryExists(s));
         }
 

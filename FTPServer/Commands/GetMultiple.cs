@@ -23,7 +23,7 @@ namespace FTPServer.Commands
             if (command.Length != 3)
             {
                 Console.WriteLine("Invalid Command");
-                Program.OptionPrompt();
+                //Program.OptionPrompt();
             }
             else
             {

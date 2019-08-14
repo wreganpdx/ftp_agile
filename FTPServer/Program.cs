@@ -31,7 +31,9 @@ namespace FTPServer
                 Console.Write("6. Create directory on remote server\n");
                 Console.Write("7. Put file on remote server\n");
                 Console.Write("8. Rename a local file.\n");
-                Console.Write("9. Put Multiple files on remote machine.\n");
+                // dont forget to call put multiple
+                Console.Write("9. Rename a remote directory.\n");
+                Console.Write("10. Chmod.\n");
 
 
 
@@ -44,10 +46,13 @@ namespace FTPServer
                         Console.WriteLine("Bye!");
                         break;
                     case 1:
+                    	Commands.GetFile.getFile(client);
                         break;
                     case 2:
+                    	Commands.LogOff.logOff(client);
                         break;
                     case 3:
+                    	Commands.GetMultiple.getmpFile(client);
                         break;
                     case 4:
                         break;
@@ -66,13 +71,19 @@ namespace FTPServer
                     case 9:
                         Commands.PutMultiple.putMultiple(client);
                         break;
+                    case 10:
+                        Commands.Chmod.change_Permissions(client);
+                        break;
+                    case 12:
+                        Commands.RenameRemoteDir.renameDir(client);
+                        break;
+
                 }
             }
-
         }
         static void Main(string[] args)
         {
-           //192.168.1.11
+           
            Console.WriteLine("FTP CLIENT" + Environment.NewLine);
 
            client = Commands.LogIn.logIn();
